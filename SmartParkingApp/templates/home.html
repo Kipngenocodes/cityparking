@@ -1,0 +1,56 @@
+{% extends 'basefile.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    body {
+        background-image: url("{% static 'images/parking1.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .form-container {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    }
+</style>
+
+<div class="col-md-6 offset-md-3 form-container">
+    {% if user.is_authenticated %}
+        <h1>Welcome Back and continue enjoying our services</h1>
+    {% else %}
+        <h1>Login</h1>
+        <br />
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+
+            <!-- Username Field -->
+            <div class="mb-3">
+                <input type="text" class="form-control" name="username" placeholder="USERNAME" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-3">
+                <input type="password" class="form-control" name="password" placeholder="PASSWORD" required>
+            </div>
+
+            <!-- Role Selection -->
+            <div class="mb-3">
+                <select name="role" class="form-control" required>
+                    <option value="admin">Admin</option>
+                    <option value="regular">Regular User</option>
+                    <option value="guest">Guest</option>
+                </select>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-secondary">Login</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
