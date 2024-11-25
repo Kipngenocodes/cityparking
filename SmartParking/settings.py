@@ -77,14 +77,11 @@ WSGI_APPLICATION = 'SmartParking.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Akron_parking',
-        'USER': 'parking_user',
-        'PASSWORD': 'securepassword',
-        'HOST': 'localhost',  # Change if using a remote PostgreSQL server
-        'PORT': '5432',       # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',  # Path to your SQLite database file
     }
 }
+
 
 
 # Password validation
